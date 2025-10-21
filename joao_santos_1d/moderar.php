@@ -35,26 +35,12 @@ if($editar_id){
 <head>
 <meta charset="utf-8"/>
 <title>Moderar pedidos</title>
-<link rel="stylesheet" href="styles.css"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <div id="main">
 <div id="geral">
 <div id="header">
-    <h1>Mural de pedidos</h1>
-</div>
-
-<div id="formulario_mural">
-<form id="mural" method="post">
-    <label>Nome:</label>
-    <input type="text" name="nome"/><br/>
-    <label>Email:</label>
-    <input type="text" name="email"/><br/>
-    <label>Mensagem:</label>
-    <textarea name="msg"></textarea><br/>
-    <input type="submit" value="Publicar no Mural" name="cadastra" class="btn"/>
-</form>
-</div>
     <h1>Mural de pedidos</h1>
 </div>
 
@@ -85,7 +71,7 @@ if(mysqli_num_rows($seleciona) <= 0){
               <a href="moderar.php?acao=editar&id=' . $res['id'] . '">Modificar</a></li>';
         echo '<li><strong>Nome:</strong> ' . htmlspecialchars($res['nome']) . '</li>';
         echo '<li><strong>Email:</strong> ' . htmlspecialchars($res['email']) . '</li>';
-        echo '<li><strong>Mensagem:</strong> ' . nl2br(htmlspecialchars($res['mesagem'])) . '</li>';
+        echo '<li><strong>Mesagem:</strong> ' . nl2br(htmlspecialchars($res['mesagem'])) . '</li>';
         echo '</ul>';
     }
 }
@@ -98,122 +84,88 @@ if(mysqli_num_rows($seleciona) <= 0){
 </body>
 </html>
 
-
-
-
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-  }
+{
+  box-sizing: border-box;
+}
 
-  #main {
-    max-width: 800px;
-    margin: 30px auto;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 20px 30px;
-    border-radius: 8px;
-  }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
 
-  #header h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-  }
+#main {
+  max-width: 800px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
 
-  #formulario_mural {
-    margin-bottom: 40px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #fafafa;
-  }
+#geral {
+  width: 100%;
+}
 
-  #formulario_mural label {
-    display: block;
-    font-weight: bold;
-    margin-top: 12px;
-    color: #555;
-  }
+#header h1 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
 
-  #formulario_mural input[type="text"],
-  #formulario_mural textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    resize: vertical;
-  }
+#formulario_mural {
+  background: #fefefe;
+  padding: 20px 25px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 35px;
+}
 
-  #formulario_mural textarea {
-    min-height: 80px;
-  }
+#formulario_mural label {
+  display: block;
+  font-weight: 600;
+  margin-top: 12px;
+  color: #444;
+}
 
-  #formulario_mural .btn {
-    margin-top: 15px;
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+#formulario_mural input[type="text"],
+#formulario_mural textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
 
-  #formulario_mural .btn:hover {
-    background-color: #3367d6;
-  }
+#formulario_mural input[type="text"]:focus,
+#formulario_mural textarea:focus {
+  border-color: #4285f4;
+  outline: none;
+}
 
-  ul.recados {
-    list-style-type: none;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #fff;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
-  }
+#formulario_mural textarea {
+  min-height: 90px;
+}
 
-  ul.recados li {
-    margin-bottom: 8px;
-    color: #444;
-  }
+#formulario_mural .btn {
+  margin-top: 18px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 13px 22px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
 
-  ul.recados li:first-child {
-    font-weight: bold;
-    font-size: 14px;
-    color: #222;
-  }
-
-  ul.recados li:first-child a {
-    margin-left: 12px;
-    text-decoration: none;
-    color: #e74c3c;
-    font-weight: normal;
-  }
-
-  ul.recados li:first-child a:hover {
-    text-decoration: underline;
-  }
-
-  ul.recados li:nth-child(1) a:nth-child(3) {
-    color: #3498db;
-  }
-
-  ul.recados li:nth-child(1) a:nth-child(3):hover {
-    text-decoration: underline;
-  }
-
-  #footer {
-    text-align: center;
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 40px;
-  }
-</style>
+#formulario_mural .bt_
